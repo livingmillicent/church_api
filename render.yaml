@@ -1,0 +1,54 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: chms-postgres
+    env: docker
+    plan: free
+    region: oregon
+    ipAllowList: []
+    databaseName: church_management
+    databaseUser: postgres
+
+  # NestJS API
+  - type: web
+    name: chms-api
+    env: node
+    region: oregon
+    plan: free
+    branch: develop
+    buildCommand: npm install && npm run build
+    startCommand: node dist/main
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DB_HOST
+        fromDatabase:
+          name: chms-postgres
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: chms-postgres
+          property: port
+      - key: DB_USERNAME
+        fromDatabase:
+          name: chms-postgres
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: chms-postgres
+          property: password
+      - key: DB_DATABASE
+        fromDatabase:
+          name: chms-postgres
+          property: database
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: 1h
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_EXPIRATION
+        value: 7d
