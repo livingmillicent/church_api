@@ -6,8 +6,8 @@ services:
     region: oregon
     plan: free
     branch: develop
-    buildCommand: npm ci --include=dev && npx nest build
-    startCommand: node dist/main
+    buildCommand: npm ci && npm run build
+    startCommand: node dist/src/main
     healthCheckPath: /
     envVars:
       - key: NODE_ENV
