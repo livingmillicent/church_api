@@ -8,7 +8,7 @@ services:
   # NestJS API
   - type: web
     name: chms-api
-    env: node
+    runtime: node
     region: oregon
     plan: free
     branch: develop
@@ -20,11 +20,6 @@ services:
         value: production
       - key: PORT
         value: 3000
-      - key: DATABASE_URL
-        fromService:
-          type: pserv
-          name: chms-postgres
-          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRATION
