@@ -1,12 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import * as request from 'supertest';
+import request from 'supertest';
 import { AppModule } from './../src/app.module';
 
 describe('Authentication (e2e)', () => {
   let app: INestApplication;
   let accessToken: string;
-  let refreshToken: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -49,7 +48,6 @@ describe('Authentication (e2e)', () => {
           expect(res.body).toHaveProperty('refreshToken');
           expect(res.body.user.email).toEqual(registerDto.email);
           accessToken = res.body.accessToken;
-          refreshToken = res.body.refreshToken;
         });
     });
 
