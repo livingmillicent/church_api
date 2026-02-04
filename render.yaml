@@ -12,6 +12,9 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      # Ensure devDependencies are installed during build
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
       - key: PORT
         value: 3000
       - key: JWT_SECRET
