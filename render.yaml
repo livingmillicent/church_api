@@ -6,7 +6,7 @@ services:
     region: oregon
     plan: free
     branch: develop
-    buildCommand: npm install && npm run build
+    buildCommand: npm install && npx nest build
     startCommand: node dist/main
     healthCheckPath: /
     envVars:
