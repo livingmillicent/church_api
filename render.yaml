@@ -25,23 +25,28 @@ services:
       - key: PORT
         value: 3000
       - key: DB_HOST
-        fromDatabase:
+        fromService:
+          type: pserv
           name: chms-postgres
           property: host
       - key: DB_PORT
-        fromDatabase:
+        fromService:
+          type: pserv
           name: chms-postgres
           property: port
       - key: DB_USERNAME
-        fromDatabase:
+        fromService:
+          type: pserv
           name: chms-postgres
           property: user
       - key: DB_PASSWORD
-        fromDatabase:
+        fromService:
+          type: pserv
           name: chms-postgres
           property: password
       - key: DB_DATABASE
-        fromDatabase:
+        fromService:
+          type: pserv
           name: chms-postgres
           property: database
       - key: JWT_SECRET
