@@ -70,10 +70,7 @@ export class MembersController {
   @Patch(':id')
   @Roles(UserRole.ADMIN, UserRole.PASTOR, UserRole.LEADER)
   @ApiOperation({ summary: 'Update member' })
-  async update(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Body() updateMemberDto: UpdateMemberDto,
-  ) {
+  async update(@Param('id', ParseUUIDPipe) id: string, @Body() updateMemberDto: UpdateMemberDto) {
     return this.membersService.update(id, updateMemberDto);
   }
 

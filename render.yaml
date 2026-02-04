@@ -4,7 +4,6 @@ services:
     name: chms-postgres
     plan: free
     region: oregon
-    ipAllowList: []
 
   # NestJS API
   - type: web
@@ -21,31 +20,11 @@ services:
         value: production
       - key: PORT
         value: 3000
-      - key: DB_HOST
+      - key: DATABASE_URL
         fromService:
           type: pserv
           name: chms-postgres
-          property: host
-      - key: DB_PORT
-        fromService:
-          type: pserv
-          name: chms-postgres
-          property: port
-      - key: DB_USERNAME
-        fromService:
-          type: pserv
-          name: chms-postgres
-          property: user
-      - key: DB_PASSWORD
-        fromService:
-          type: pserv
-          name: chms-postgres
-          property: password
-      - key: DB_DATABASE
-        fromService:
-          type: pserv
-          name: chms-postgres
-          property: database
+          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRATION

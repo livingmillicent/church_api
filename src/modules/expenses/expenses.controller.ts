@@ -56,10 +56,7 @@ export class ExpensesController {
   @ApiOperation({ summary: 'Get total expenses' })
   @ApiQuery({ name: 'startDate', required: false, type: Date })
   @ApiQuery({ name: 'endDate', required: false, type: Date })
-  async totalExpenses(
-    @Query('startDate') startDate?: Date,
-    @Query('endDate') endDate?: Date,
-  ) {
+  async totalExpenses(@Query('startDate') startDate?: Date, @Query('endDate') endDate?: Date) {
     return this.expensesService.totalExpenses(startDate, endDate);
   }
 
@@ -80,10 +77,7 @@ export class ExpensesController {
   @Patch(':id')
   @Roles(UserRole.ADMIN, UserRole.TREASURER)
   @ApiOperation({ summary: 'Update expense' })
-  async update(
-    @Param('id', ParseUUIDPipe) id: string,
-    @Body() updateExpenseDto: UpdateExpenseDto,
-  ) {
+  async update(@Param('id', ParseUUIDPipe) id: string, @Body() updateExpenseDto: UpdateExpenseDto) {
     return this.expensesService.update(id, updateExpenseDto);
   }
 
