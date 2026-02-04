@@ -2,12 +2,9 @@ services:
   # PostgreSQL Database
   - type: pserv
     name: chms-postgres
-    env: docker
     plan: free
     region: oregon
     ipAllowList: []
-    databaseName: church_management
-    databaseUser: postgres
 
   # NestJS API
   - type: web
