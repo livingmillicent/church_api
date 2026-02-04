@@ -1,10 +1,4 @@
 services:
-  # PostgreSQL Database
-  - type: pserv
-    name: chms-postgres
-    plan: free
-    region: oregon
-
   # NestJS API
   - type: web
     name: chms-api
@@ -28,3 +22,8 @@ services:
         generateValue: true
       - key: JWT_REFRESH_EXPIRATION
         value: 7d
+
+databases:
+  - name: chms-postgres
+    plan: free
+    region: oregon
