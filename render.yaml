@@ -8,15 +8,13 @@ services:
     branch: develop
     buildCommand: npm ci && npm run build
     startCommand: node dist/main.js
-    healthCheckPath: /
+    healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
       # Ensure devDependencies are installed during build
       - key: NPM_CONFIG_PRODUCTION
         value: "false"
-      - key: PORT
-        value: 3000
       - key: DATABASE_URL
         fromDatabase:
           name: chms-postgres

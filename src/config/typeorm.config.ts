@@ -11,14 +11,18 @@ export const dataSourceOptions: DataSourceOptions = process.env.DATABASE_URL
       migrations: ['dist/migrations/*.js'],
       synchronize: process.env.NODE_ENV === 'development',
       logging: process.env.NODE_ENV === 'development',
-      ssl: {
-        rejectUnauthorized: false,
-      },
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? { rejectUnauthorized: false }
+          : false,
+      extra:
+        process.env.NODE_ENV === 'production'
+          ? {
+              ssl: {
+                rejectUnauthorized: false,
+              },
+            }
+          : {},
     }
   : {
       type: 'postgres',
