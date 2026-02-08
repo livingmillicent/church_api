@@ -17,6 +17,10 @@ services:
         value: "false"
       - key: PORT
         value: 3000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chms-postgres
+          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRATION
@@ -25,6 +29,8 @@ services:
         generateValue: true
       - key: JWT_REFRESH_EXPIRATION
         value: 7d
+      - key: API_PREFIX
+        value: api/v1
 
 databases:
   - name: chms-postgres

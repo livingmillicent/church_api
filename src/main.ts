@@ -6,11 +6,16 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Global prefix
-  app.setGlobalPrefix(process.env.API_PREFIX || 'api/v1');
+  // Global prefix (exclude health check routes)
+  app.setGlobalPrefix(process.env.API_PREFIX || 'api/v2', {
+    exclude: ['/', 'health'],
+  });
 
   // Enable CORS
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:5173', 'http://localhost:3000'],
+    credentials: true,
+  });
 
   // Global validation pipe
   app.useGlobalPipes(
@@ -47,7 +52,7 @@ async function bootstrap() {
   console.log(`
     ✅ Application is running on: http://localhost:${port}
     📚 Swagger documentation: http://localhost:${port}/api/docs
-    🔐 API endpoints available at: http://localhost:${port}/${process.env.API_PREFIX || 'api/v1'}
+    🔐 API endpoints available at: http://localhost:${port}/${process.env.API_PREFIX || 'api/v2'}
   `);
 }
 
