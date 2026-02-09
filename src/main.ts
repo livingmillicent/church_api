@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Global prefix (exclude health check routes)
-  app.setGlobalPrefix(process.env.API_PREFIX || 'api/v2', {
+  app.setGlobalPrefix(process.env.API_PREFIX || 'api/v1', {
     exclude: ['/', 'health'],
   });
 
@@ -53,7 +53,7 @@ async function bootstrap() {
   console.log(`
     ✅ Application is running on: http://localhost:${port}
     📚 Swagger documentation: http://localhost:${port}/api/docs
-    🔐 API endpoints available at: http://localhost:${port}/${process.env.API_PREFIX || 'api/v2'}
+    🔐 API endpoints available at: http://localhost:${port}/${process.env.API_PREFIX || 'api/v1'}
   `);
 }
 
