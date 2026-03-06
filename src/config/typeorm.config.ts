@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions =
         url: process.env.DATABASE_URL,
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         migrations: ['dist/migrations/*.js'],
-        synchronize: !isProduction,
+        synchronize: true,
         logging: !isProduction,
         ssl: isProduction ? { rejectUnauthorized: false } : false,
       }
@@ -25,7 +25,7 @@ export const dataSourceOptions: DataSourceOptions =
         database: process.env.DB_DATABASE || 'church_management',
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         migrations: ['dist/migrations/*.js'],
-        synchronize: !isProduction,
+        synchronize: true,
         logging: !isProduction,
       };
 
