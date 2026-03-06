@@ -7,7 +7,7 @@ services:
     plan: free
     branch: develop
     buildCommand: npm ci && npm run build
-    startCommand: node dist/main.js
+    startCommand: npm run migration:run:prod && node dist/main.js
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV

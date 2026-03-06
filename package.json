@@ -21,7 +21,8 @@
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "npm run typeorm -- migration:generate -d src/config/typeorm.config.ts",
     "migration:run": "npm run typeorm -- migration:run -d src/config/typeorm.config.ts",
-    "migration:revert": "npm run typeorm -- migration:revert -d src/config/typeorm.config.ts"
+    "migration:revert": "npm run typeorm -- migration:revert -d src/config/typeorm.config.ts",
+    "migration:run:prod": "node -e \"const {default: ds} = require('./dist/config/typeorm.config'); ds.initialize().then(() => ds.runMigrations()).then(r => { console.log('Migrations completed:', r.length); process.exit(0); }).catch(e => { console.error('Migration failed:', e); process.exit(1); })\""
   },
   "dependencies": {
     "@nestjs/cli": "^11.0.16",
