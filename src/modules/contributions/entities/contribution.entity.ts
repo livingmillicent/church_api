@@ -7,6 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { ContributionType, PaymentMethod } from '../../../common/enums';
+import { Member } from '../../members/entities/member.entity';
 import { User } from '../../auth/entities/user.entity';
 
 @Entity('contributions')
@@ -17,9 +18,9 @@ export class Contribution {
   @Column({ type: 'uuid' })
   memberId: string;
 
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => Member, { eager: true })
   @JoinColumn({ name: 'memberId' })
-  member: User;
+  member: Member;
 
   @Column({
     type: 'enum',
